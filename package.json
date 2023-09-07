@@ -1,0 +1,22 @@
+{
+  "name": "geektrust-doremi",
+  "version": "1.0.0",
+  "description": "",
+  "main": "geektrust.js",
+  "scripts": {
+    "start": "node geektrust.js",
+    "test": "mocha",
+    "test-with-coverage": "nyc --reporter=html --reporter=text mocha tests/dateHandler.test.js",
+    "live": "nodemon geektrust.js",
+    "unit-tests": "mocha geektrust.test.js"
+  },
+  "author": "abhishek",
+  "license": "ISC",
+  "dependencies": {
+    "chai": "^4.3.8",
+    "mocha": "^10.2.0",
+    "moment": "^2.29.4",
+    "nodemon": "^3.0.1",
+    "nyc": "^15.1.0"
+  }
+}
