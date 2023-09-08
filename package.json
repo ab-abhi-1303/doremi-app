@@ -6,7 +6,8 @@
   "scripts": {
     "start": "node geektrust.js",
     "test": "mocha",
-    "test-with-coverage": "nyc --reporter=html --reporter=text mocha tests/dateHandler.test.js",
+    "test-with-coverage": "nyc --reporter=html --reporter=text mocha tests/geektrust.test.js",
+    "test:coverage": "find tests -name '*.test.js' -exec mocha {} \\;",
     "live": "nodemon geektrust.js",
     "unit-tests": "mocha geektrust.test.js"
   },

@@ -4,22 +4,12 @@ const fileName = process.argv[2];
 const handleDate = require('./services/dateHandler');
 const handleSubscription = require('./services/subscriptionHandler');
 const handleTopUp = require('./services/topUpHandler');
+const printOutput = require("./services/displayResult");
 
 let subscriptions = {};
 let totalAmount = 0;
 let plans = [];
 let topUps = [];
-
-function printOutput() {
-    if (plans.length === 0) {
-        logStream.write('SUBSCRIPTIONS_NOT_FOUND\n');
-        return;
-    }
-    for (let i = 0; i < plans.length; i++) {
-        logStream.write('RENEWAL_REMINDER ' + plans[i].service + ' ' + plans[i].endDate + '\n');
-    }
-    logStream.write('RENEWAL_AMOUNT ' + totalAmount);
-}
 
 function main(data) {
     let inputLines = data.toString().split("\n");
@@ -39,7 +29,7 @@ function main(data) {
                     totalAmount += topUpAmount;
                     break;
                 case "PRINT_RENEWAL_DETAILS":
-                    printOutput();
+                    printOutput(plans, totalAmount);
                     break;
             }
         }
@@ -50,8 +40,6 @@ let data = fs.readFileSync(fileName).toString();
 
 //clean file
 fs.writeFile('sample_output/output.txt', '', function () {});
-
-var logStream = fs.createWriteStream('sample_output/output.txt', { flags: 'a' });
 
 main(data);
 
